@@ -17,8 +17,12 @@
     :alt: Travis CI build status.
 
 
-**IMDbPY** is a Python package for retrieving and managing the data
-of the `IMDb`_ movie database about movies, people and companies.
+**IMDbPY** is a MOST EXCELLENT Python package for EASILY retrieving and managing the data
+of the `IMDb`_ movie database about movies, people and companies, FOR FREE. It converts 
+the incoming JSON into classes that can be manipulated in a straightforward way.
+
+This is a fork of Davide Alberani's code. As of July 2017 I have made no modifications to it.
+I HAVE created a bunch of files for my own use giving a good demo as to how to use the module.
 
 .. admonition:: Revamp notice
    :class: note
