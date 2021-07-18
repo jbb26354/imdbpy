@@ -44,7 +44,7 @@ def Create_Actor_Filmography(imdbID):
   # beginning tags
 	
   objWebPage.writelines('<!DOCTYPE html>' + '\n\n')
-  objWebPage.writelines('<html xml:lang="en-US" dir="ltr" lang="en-US"' + '\n\n')
+  objWebPage.writelines('<html xml:lang="en-US" dir="ltr" lang="en-US">' + '\n\n')
   objWebPage.writelines('<head>' + '\n')
   objWebPage.writelines('\t<title>' + objActor['name'] + ' - Filmography</title>' + '\n')	
   objWebPage.writelines('\t<meta http-equiv="Pragma" content="no-cache">' + '\n')
