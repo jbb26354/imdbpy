@@ -25,7 +25,7 @@ print('--------------------------------\n')
 for job in objActor['filmography'].keys():
 	for movie in objActor['filmography'][job]:
 		# movie['year'] won't work if it's a TV series, we just want movies anyway (actress, self) and (job == "actress")
-		if movie['kind'] == "movie" and (job == "actress" or job == "actor"): 
+		if (movie['kind'] == 'movie' or movie['kind'] == 'tv movie') and (job == "actress" or job == "actor"): 
 			try: 
 				print('\t%s (role: %s) [%s]' % (movie['title'], movie.currentRole, movie['year']))
 			except:

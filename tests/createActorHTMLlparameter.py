@@ -36,7 +36,7 @@ def Create_Actor_Filmography(imdbID):
   objIMDB = IMDb()
   
   # open the file
-  objWebPage = open(r"MovieList.htm", "w")
+  objWebPage = open(r"Filmography.htm", "w")
   
   # get a person - say, Lindsay Wagner ('0905993'). We just want the films object
   objActor = objIMDB.get_person(imdbID, info=['filmography'])
@@ -65,7 +65,7 @@ def Create_Actor_Filmography(imdbID):
   for job in objActor['filmography'].keys():
     for movie in objActor['filmography'][job]:
       # movie['year'] won't work if it's a TV series, we just want movies anyway (actress, self) and (job == "actress")
-      if movie['kind'] == "movie" and (job == "actress" or job == "actor"): 
+      if (movie['kind'] == 'movie' or movie['kind'] == 'tv movie') and (job == "actress" or job == "actor"): 
         try: 
           objWebPage.writelines('\t\t<tr><td>&nbsp;</td><td>')
           objWebPage.writelines('%s [role: %s] (%s)' % (movie['title'], movie.currentRole, movie['year'])) 

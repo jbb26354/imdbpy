@@ -11,7 +11,11 @@ from imdb import IMDb
 # burt lancaster '0000044'
 # helen hunt     '0000166'
 # anne heche     '0000162'
-strPersonID = '0000166'
+# john travolta  '0000237'
+# rock hudson    '0001369'
+# peter o'toole  '0000564'
+# anthony quayle '0703033'
+strPersonID = '0703033'
 
 # create an instance of the IMDb class
 objIMDB = IMDb()
@@ -26,9 +30,10 @@ print('--------------------------------\n')
 for job in objActor['filmography'].keys():
 	for movie in objActor['filmography'][job]:
 		# movie['year'] won't work if it's a TV series, we just want movies anyway (actress, self) 
-		if movie['kind'] == "movie" and (job == "actress" or job == "actor"):
+		# (movie['kind'] == 'movie' or movie['kind'] == 'tv movie') and 
+		if (job == "actress" or job == "actor"):
 			try:
-				print('\t%s (as: %s) [%s]' % (movie['title'], movie.currentRole, movie['year']))
+				print('\t%s: %s (as: %s) [%s]' % (movie['kind'], movie['title'], movie.currentRole, movie['year']))
 			except:
-				print('\t%s %s' % (movie['title'], '[In Production]'))				
+				print('\t%s: %s %s' % (movie['kind'], movie['title'], '[In Production]'))				
 				
