@@ -16,13 +16,13 @@ import datetime
 strPersonID = '0000166'
 
 # fetch an actor's filmography and dump to webpage with checkmark support
-def Create_Actor_Filmography(imdbID):
+def Create_Actor_Filmography(imdbID, webPageName):
 	
   # create an instance of the IMDb class
   objIMDB = IMDb()
   
   # open the file
-  objWebPage = open(r"MovieList.htm", "w")
+  objWebPage = open(webPageName + '.htm', 'w')
   
   # get a person - say, Lindsay Wagner ('0905993'). We just want the filmography object
   objActor = objIMDB.get_person(imdbID, info=['filmography'])
@@ -36,6 +36,9 @@ def Create_Actor_Filmography(imdbID):
   objWebPage.writelines('\t<meta http-equiv="Pragma" content="no-cache">' + '\n')
   objWebPage.writelines('\t<meta http-equiv="Cache-control" content="no-cache">' + '\n')
   objWebPage.writelines('\t<meta charset="utf-8">' + '\n')
+  objWebPage.writelines('\t<style>' + '\n')
+  objWebPage.writelines('\t\t.noNude {background-color: gray;}' + '\n')
+  objWebPage.writelines('\t</style>' + '\n')
   objWebPage.writelines('</head>' + '\n\n')
   objWebPage.writelines('<body>' + '\n\n')
   
@@ -52,13 +55,12 @@ def Create_Actor_Filmography(imdbID):
     for movie in objActor['filmography'][job]:
       # movie['year'] won't work if it's a TV series, we just want movies anyway (actress, self) and (job == "actress")
       if (movie['kind'] == 'movie' or movie['kind'] == 'tv movie') and (job == "actress" or job == "actor"): 
+        objWebPage.writelines('\t\t<tr><td align="center">&nbsp;</td><td>')
         try: 
-          objWebPage.writelines('\t\t<tr><td>&nbsp;</td><td>')
           objWebPage.writelines('%s [role: %s] (%s)' % (movie['title'], movie.currentRole, movie['year'])) 
-          objWebPage.writelines('</td></tr>\n')
         except:
           objWebPage.writelines('%s [role: %s] [%s]' % (movie['title'], movie.currentRole, 'In Production')) 
-          objWebPage.writelines('</td></tr>\n')
+        objWebPage.writelines('</td></tr>\n')
   
   # ending tags
   objWebPage.writelines('\t</table>\n\n')
@@ -71,4 +73,4 @@ def Create_Actor_Filmography(imdbID):
   print('\nCreated ' + objActor['name'] + ' filmography web page.\n')
 
 # Call the function
-Create_Actor_Filmography(strPersonID)
+Create_Actor_Filmography('0000166', 'Filmography')
