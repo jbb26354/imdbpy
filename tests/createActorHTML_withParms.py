@@ -9,11 +9,23 @@
 from imdb import IMDb
 
 import datetime
+import sys
 
 # lindsay wagner '0905993'
 # burt lancaster '0000044'
 # helen hunt     '0000166'
 strPersonID = '0000166'
+
+# parameters are positional
+if len(sys.argv) < 2:
+  print('\nThis script requires a person ID.\n')
+  sys.exit() 
+strPersonID= sys.argv[1]  
+if len(sys.argv) < 3:
+  print('\nUsing default output file: Filmography.htm')
+  fileName = 'Filmography'
+else:
+  fileName = sys.argv[2]
 
 # fetch an actor's filmography and dump to webpage with checkmark support
 def Create_Actor_Filmography(imdbID, webPageName):
@@ -73,4 +85,4 @@ def Create_Actor_Filmography(imdbID, webPageName):
   print('\nCreated ' + objActor['name'] + ' filmography web page.\n')
   
 # Call the function
-Create_Actor_Filmography(strPersonID, 'Filmography')
+Create_Actor_Filmography(strPersonID, fileName)
